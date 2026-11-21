@@ -1,0 +1,45 @@
+{
+  "common": {
+    "appName": "Office hours booking system",
+    "appShortName": "Office hours",
+    "polishTime": "Polish time",
+    "loading": "Loading...",
+    "empty": "No data",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "switchLanguage": "Przełącz na polski (PL)"
+  },
+  "pages": {
+    "home": "Home",
+    "login": "Sign in",
+    "studentDashboard": "Find a lecturer",
+    "lecturerProfile": "Lecturer profile",
+    "myBookings": "My bookings",
+    "lecturerSchedule": "My week",
+    "officeHours": "Office hours",
+    "newOfficeHour": "New office hours",
+    "adminSeed": "Manage seed",
+    "adminNotifications": "Notification log",
+    "forbidden": "Access denied",
+    "notFound": "Page not found"
+  },
+  "errors": {
+    "VALIDATION_FAILED": "Please check the data you entered",
+    "UNAUTHENTICATED": "Your session has expired. Please sign in again",
+    "FORBIDDEN": "You are not allowed to do this",
+    "NOT_FOUND": "The requested data was not found",
+    "SLOT_FULL": "This slot is no longer available",
+    "SLOT_UNAVAILABLE": "This slot is cancelled or booking is already closed",
+    "ALREADY_BOOKED": "You have already booked this slot",
+    "MAX_ACTIVE_BOOKINGS_REACHED": "You can have at most 3 active bookings",
+    "CANCELLATION_CUTOFF_PASSED": "The cancellation deadline has passed — contact the lecturer",
+    "OFFICE_HOUR_OVERLAP": "The new office hours overlap existing slots:",
+    "OFFICE_HOUR_HAS_BOOKINGS": "Office hours with bookings cannot be deleted",
+    "INTERNAL_ERROR": "A server error occurred. Please try again later",
+    "NETWORK_ERROR": "Cannot connect to the server. Please try again"
+  }
+}
