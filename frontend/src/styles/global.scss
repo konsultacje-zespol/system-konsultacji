@@ -1,0 +1,67 @@
+@use 'variables';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+h1 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+}
+
+h2 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+// The only layout rule for screen width: desktop app, grids inside wrap by themselves.
+.page-container {
+  min-width: 1024px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-32);
+}

@@ -1,0 +1,45 @@
+{
+  "common": {
+    "appName": "System zapisów na konsultacje",
+    "appShortName": "Konsultacje",
+    "polishTime": "czas polski",
+    "loading": "Ładowanie...",
+    "empty": "Brak danych",
+    "error": "Coś poszło nie tak",
+    "retry": "Spróbuj ponownie",
+    "confirm": "Potwierdź",
+    "cancel": "Anuluj",
+    "close": "Zamknij",
+    "save": "Zapisz",
+    "switchLanguage": "Switch to English (EN)"
+  },
+  "pages": {
+    "home": "Strona główna",
+    "login": "Logowanie",
+    "studentDashboard": "Znajdź prowadzącego",
+    "lecturerProfile": "Profil prowadzącego",
+    "myBookings": "Moje rezerwacje",
+    "lecturerSchedule": "Mój tydzień",
+    "officeHours": "Lista dyżurów",
+    "newOfficeHour": "Nowy dyżur",
+    "adminSeed": "Zarządzaj seedem",
+    "adminNotifications": "Logi powiadomień",
+    "forbidden": "Brak uprawnień",
+    "notFound": "Nie znaleziono strony"
+  },
+  "errors": {
+    "VALIDATION_FAILED": "Sprawdź poprawność wpisanych danych",
+    "UNAUTHENTICATED": "Sesja wygasła. Zaloguj się ponownie",
+    "FORBIDDEN": "Nie masz uprawnień do tej operacji",
+    "NOT_FOUND": "Nie znaleziono szukanych danych",
+    "SLOT_FULL": "Ten termin nie jest już dostępny",
+    "SLOT_UNAVAILABLE": "Ten termin jest odwołany albo zapisy są już zamknięte",
+    "ALREADY_BOOKED": "Masz już rezerwację na ten termin",
+    "MAX_ACTIVE_BOOKINGS_REACHED": "Możesz mieć najwyżej 3 aktywne rezerwacje",
+    "CANCELLATION_CUTOFF_PASSED": "Minął termin odwołania — skontaktuj się z prowadzącym",
+    "OFFICE_HOUR_OVERLAP": "Nowy dyżur koliduje z istniejącymi terminami:",
+    "OFFICE_HOUR_HAS_BOOKINGS": "Nie można usunąć dyżuru, na który są rezerwacje",
+    "INTERNAL_ERROR": "Wystąpił błąd serwera. Spróbuj ponownie później",
+    "NETWORK_ERROR": "Brak połączenia z serwerem. Spróbuj ponownie"
+  }
+}
