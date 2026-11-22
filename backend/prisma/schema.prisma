@@ -1,0 +1,139 @@
+// database schema (Prisma 5). full model description: plan.md section 2.2.
+// convention: PascalCase models with @@map to snake_case table names,
+// camelCase fields with @map to snake_case columns.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  LECTURER
+  ADMIN
+}
+
+enum LocationMode {
+  IN_PERSON
+  ONLINE
+}
+
+enum Recurrence {
+  ONCE
+  WEEKLY
+}
+
+enum SlotStatus {
+  OPEN
+  CANCELLED
+}
+
+enum BookingStatus {
+  CONFIRMED
+  CANCELLED_BY_STUDENT
+  CANCELLED_BY_LECTURER
+}
+
+enum OutboxType {
+  BOOKING_CONFIRMED
+  BOOKING_CANCELLED_BY_STUDENT
+  BOOKING_CANCELLED_BY_LECTURER
+}
+
+enum OutboxStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+model User {
+  id          String       @id @default(uuid()) @db.Uuid
+  email       String       @unique
+  firstName   String       @map("first_name")
+  lastName    String       @map("last_name")
+  searchName  String       @map("search_name")        // "kowalski jan": lower case, no Polish diacritics (ł→l)
+  role        Role
+  title       String?                                  // "dr hab." (lecturer)
+  department  String?
+  createdAt   DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
+  officeHours OfficeHour[]
+  slots       Slot[]
+  bookings    Booking[]
+  @@map("users")
+}
+
+model OfficeHour {
+  id              String       @id @default(uuid()) @db.Uuid
+  lecturerId      String       @map("lecturer_id") @db.Uuid
+  recurrence      Recurrence
+  startDate       DateTime     @map("start_date") @db.Date
+  endDate         DateTime     @map("end_date") @db.Date   // = startDate for ONCE
+  weekdays        Int[]                                     // 1 = Mon … 7 = Sun; empty array for ONCE
+  startTime       String       @map("start_time")           // "14:00" (Polish time)
+  endTime         String       @map("end_time")             // "16:00"
+  slotDurationMin Int          @map("slot_duration_min")
+  capacity        Int
+  mode            LocationMode
+  location        String                                    // "Sala 204, bud. B-1" or an https Teams link
+  note            String?
+  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
+  lecturer        User         @relation(fields: [lecturerId], references: [id])
+  slots           Slot[]
+  @@index([lecturerId])
+  @@map("office_hours")
+}
+
+model Slot {
+  id           String       @id @default(uuid()) @db.Uuid
+  officeHourId String       @map("office_hour_id") @db.Uuid
+  lecturerId   String       @map("lecturer_id") @db.Uuid    // copied from the office hour — simpler queries
+  startsAt     DateTime     @map("starts_at") @db.Timestamptz(3)
+  endsAt       DateTime     @map("ends_at") @db.Timestamptz(3)
+  capacity     Int
+  bookedCount  Int          @default(0) @map("booked_count")
+  mode         LocationMode
+  location     String
+  status       SlotStatus   @default(OPEN)
+  cancelReason String?      @map("cancel_reason")
+  officeHour   OfficeHour   @relation(fields: [officeHourId], references: [id], onDelete: Cascade)
+  lecturer     User         @relation(fields: [lecturerId], references: [id])
+  bookings     Booking[]
+  @@unique([officeHourId, startsAt])
+  @@index([lecturerId, startsAt])
+  @@map("slots")
+}
+
+model Booking {
+  id           String        @id @default(uuid()) @db.Uuid
+  slotId       String        @map("slot_id") @db.Uuid
+  studentId    String        @map("student_id") @db.Uuid
+  topic        String        @db.VarChar(300)
+  status       BookingStatus @default(CONFIRMED)
+  cancelReason String?       @map("cancel_reason")
+  cancelledAt  DateTime?     @map("cancelled_at") @db.Timestamptz(3)
+  createdAt    DateTime      @default(now()) @map("created_at") @db.Timestamptz(3)
+  slot         Slot          @relation(fields: [slotId], references: [id])
+  student      User          @relation(fields: [studentId], references: [id])
+  outboxEvents OutboxEvent[]
+  @@index([studentId, status])
+  @@map("bookings")
+}
+
+model OutboxEvent {
+  id        String       @id @default(uuid()) @db.Uuid
+  type      OutboxType
+  bookingId String       @map("booking_id") @db.Uuid
+  recipient String                                          // student e-mail (shown in the admin panel)
+  status    OutboxStatus @default(PENDING)
+  attempts  Int          @default(0)
+  lastError String?      @map("last_error")
+  createdAt DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
+  sentAt    DateTime?    @map("sent_at") @db.Timestamptz(3)
+  booking   Booking      @relation(fields: [bookingId], references: [id])
+  @@index([status, createdAt])
+  @@map("outbox_events")
+}
