@@ -86,6 +86,8 @@ powyżej.
 |---|---|---|
 | `backend/` | `npm run dev` | API z automatycznym restartem po zmianie pliku |
 | `backend/` | `npm run lint` | Sprawdza kod ESLintem |
+| `backend/` | `npm run test` | Testy jednostkowe (bez bazy) |
+| `backend/` | `npm run test:int` | Testy integracyjne na bazie `konsultacje_test` — opis w [`docs/tests.md`](docs/tests.md) |
 | `frontend/` | `npm run dev` | Serwer deweloperski Vite |
 | `frontend/` | `npm run lint` | Sprawdza kod ESLintem |
 | `frontend/` | `npm run build` | Buduje wersję produkcyjną do `dist/` |
