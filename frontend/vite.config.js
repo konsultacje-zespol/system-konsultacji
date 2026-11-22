@@ -15,4 +15,9 @@ export default defineConfig({
       '/api': 'http://localhost:3000',
     },
   },
+  // Vitest settings (npm test): jsdom is a fake browser, so components can render without a real one
+  test: {
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.js',
+  },
 });
