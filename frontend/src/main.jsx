@@ -6,6 +6,7 @@ import { Toaster } from 'sonner';
 import './i18n/i18n.js';
 import './styles/global.scss';
 import { queryClient } from './api/query-client.js';
+import { AuthProvider } from './auth/AuthProvider.jsx';
 import { router } from './router.jsx';
 
 // mount the React application into the root DOM element
@@ -13,10 +14,13 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* provide the shared react query client to the entire app */}
     <QueryClientProvider client={queryClient}>
-      {/* render routes managed by react router */}
-      <RouterProvider router={router} />
-      {/* toast notifications for the whole app (a comment starting with "global" is an ESLint directive) */}
-      <Toaster position="top-right" />
+      {/* AuthProvider reads GET /auth/me once and shares { user, isLoading } with every page */}
+      <AuthProvider>
+        {/* render routes managed by react router */}
+        <RouterProvider router={router} />
+        {/* toast notifications for the whole app (a comment starting with "global" is an ESLint directive) */}
+        <Toaster position="top-right" />
+      </AuthProvider>
     </QueryClientProvider>
   </StrictMode>,
 );
