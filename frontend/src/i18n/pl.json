@@ -11,7 +11,22 @@
     "cancel": "Anuluj",
     "close": "Zamknij",
     "save": "Zapisz",
-    "switchLanguage": "Switch to English (EN)"
+    "switchLanguage": "Switch to English (EN)",
+    "joinTeams": "Dołącz w Teams"
+  },
+  "languageSwitcher": {
+    "label": "Język"
+  },
+  "confirmDialog": {
+    "minLength": "Minimalna liczba znaków: {{count}}"
+  },
+  "status": {
+    "CONFIRMED": "Potwierdzona",
+    "CANCELLED_BY_STUDENT": "Odwołana przez Ciebie",
+    "CANCELLED_BY_LECTURER": "Odwołana przez prowadzącego",
+    "PENDING": "Oczekuje",
+    "SENT": "Wysłane",
+    "FAILED": "Błąd wysyłki"
   },
   "pages": {
     "home": "Strona główna",

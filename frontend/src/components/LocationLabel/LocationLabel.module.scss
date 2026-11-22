@@ -1,0 +1,12 @@
+.text {
+  color: var(--color-text);
+}
+
+.link {
+  color: var(--color-primary);
+  font-weight: 600;
+
+  &:hover {
+    color: var(--color-primary-hover);
+  }
+}
