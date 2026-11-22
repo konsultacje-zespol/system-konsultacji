@@ -1,0 +1,9 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.text {
+  color: var(--color-text-muted);
+}

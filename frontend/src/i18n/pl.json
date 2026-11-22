@@ -12,7 +12,13 @@
     "close": "Zamknij",
     "save": "Zapisz",
     "switchLanguage": "Switch to English (EN)",
-    "joinTeams": "Dołącz w Teams"
+    "joinTeams": "Dołącz w Teams",
+    "demoBanner": "Tryb demonstracyjny - logowanie bez hasła",
+    "role": {
+      "STUDENT": "Student",
+      "LECTURER": "Prowadzący",
+      "ADMIN": "Admin"
+    }
   },
   "languageSwitcher": {
     "label": "Język"
@@ -27,6 +33,41 @@
     "PENDING": "Oczekuje",
     "SENT": "Wysłane",
     "FAILED": "Błąd wysyłki"
+  },
+  "nav": {
+    "label": "Główne menu",
+    "findLecturer": "Znajdź prowadzącego",
+    "myBookings": "Moje rezerwacje",
+    "myWeek": "Mój tydzień",
+    "officeHours": "Kreator dyżurów",
+    "manageSeed": "Zarządzaj seedem",
+    "notificationLog": "Logi powiadomień",
+    "logout": "Wyloguj"
+  },
+  "login": {
+    "description": "Tryb demonstracyjny - logowanie bez hasła. Wybierz konto testowe.",
+    "asStudent": "Zaloguj jako testowy Student",
+    "asLecturer": "Zaloguj jako testowy Prowadzący",
+    "asAdmin": "Zaloguj jako Admin",
+    "otherUser": "Zaloguj jako inny użytkownik",
+    "chooseAccount": "Wybierz konto...",
+    "group": {
+      "STUDENT": "Studenci",
+      "LECTURER": "Prowadzący",
+      "ADMIN": "Administratorzy"
+    },
+    "submit": "Zaloguj",
+    "demoDisabled": "Logowanie demonstracyjne jest wyłączone"
+  },
+  "forbidden": {
+    "description": "Nie masz uprawnień do otwarcia tej strony.",
+    "goHome": "Wróć do strony startowej",
+    "goLogin": "Przejdź do logowania"
+  },
+  "notFound": {
+    "description": "Nie ma strony pod tym adresem.",
+    "goHome": "Wróć do strony startowej",
+    "goLogin": "Przejdź do logowania"
   },
   "pages": {
     "home": "Strona główna",

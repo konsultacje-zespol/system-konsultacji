@@ -12,7 +12,13 @@
     "close": "Close",
     "save": "Save",
     "switchLanguage": "Przełącz na polski (PL)",
-    "joinTeams": "Join on Teams"
+    "joinTeams": "Join on Teams",
+    "demoBanner": "Demo mode - sign-in without password",
+    "role": {
+      "STUDENT": "Student",
+      "LECTURER": "Lecturer",
+      "ADMIN": "Admin"
+    }
   },
   "languageSwitcher": {
     "label": "Language"
@@ -27,6 +33,41 @@
     "PENDING": "Pending",
     "SENT": "Sent",
     "FAILED": "Sending failed"
+  },
+  "nav": {
+    "label": "Main menu",
+    "findLecturer": "Find a lecturer",
+    "myBookings": "My bookings",
+    "myWeek": "My week",
+    "officeHours": "Office hours",
+    "manageSeed": "Manage seed",
+    "notificationLog": "Notification log",
+    "logout": "Log out"
+  },
+  "login": {
+    "description": "Demo mode - sign-in without password. Choose a test account.",
+    "asStudent": "Sign in as test Student",
+    "asLecturer": "Sign in as test Lecturer",
+    "asAdmin": "Sign in as Admin",
+    "otherUser": "Sign in as another user",
+    "chooseAccount": "Choose an account...",
+    "group": {
+      "STUDENT": "Students",
+      "LECTURER": "Lecturers",
+      "ADMIN": "Administrators"
+    },
+    "submit": "Sign in",
+    "demoDisabled": "Demo sign-in is disabled"
+  },
+  "forbidden": {
+    "description": "You are not allowed to open this page.",
+    "goHome": "Back to the home page",
+    "goLogin": "Go to sign in"
+  },
+  "notFound": {
+    "description": "There is no page at this address.",
+    "goHome": "Back to the home page",
+    "goLogin": "Go to sign in"
   },
   "pages": {
     "home": "Home",
