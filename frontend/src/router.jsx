@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import PlaceholderPage from './pages/PlaceholderPage.jsx';
+import DevPage from './pages/DevPage.jsx';
 
 // application route definitions using placeholder pages until real views are built
-export const router = createBrowserRouter([
+const routes = [
   { path: '/login', element: <PlaceholderPage titleKey="pages.login" /> },
   { path: '/', element: <PlaceholderPage titleKey="pages.home" showLanguageButton /> },
 
@@ -19,4 +20,11 @@ export const router = createBrowserRouter([
 
   { path: '/403', element: <PlaceholderPage titleKey="pages.forbidden" /> },
   { path: '*', element: <PlaceholderPage titleKey="pages.notFound" /> },
-]);
+];
+
+// the component preview page exists only in `npm run dev`; in `npm run build` import.meta.env.DEV is false
+if (import.meta.env.DEV) {
+  routes.push({ path: '/dev', element: <DevPage /> });
+}
+
+export const router = createBrowserRouter(routes);

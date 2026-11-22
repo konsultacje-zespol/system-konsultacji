@@ -1,0 +1,29 @@
+.switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.option {
+  padding: var(--space-4) var(--space-8);
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-weight: 600;
+
+  &:hover {
+    color: var(--color-text);
+  }
+}
+
+// the active language differs by colour AND underline, not by colour alone
+.active {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: var(--space-4);
+}
+
+.separator {
+  color: var(--color-border);
+}

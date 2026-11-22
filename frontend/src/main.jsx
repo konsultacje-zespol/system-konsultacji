@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')).render(
     <QueryClientProvider client={queryClient}>
       {/* render routes managed by react router */}
       <RouterProvider router={router} />
-      {/* global toast notification container */}
+      {/* toast notifications for the whole app (a comment starting with "global" is an ESLint directive) */}
       <Toaster position="top-right" />
     </QueryClientProvider>
   </StrictMode>,

@@ -11,7 +11,22 @@
     "cancel": "Cancel",
     "close": "Close",
     "save": "Save",
-    "switchLanguage": "Przełącz na polski (PL)"
+    "switchLanguage": "Przełącz na polski (PL)",
+    "joinTeams": "Join on Teams"
+  },
+  "languageSwitcher": {
+    "label": "Language"
+  },
+  "confirmDialog": {
+    "minLength": "Minimum number of characters: {{count}}"
+  },
+  "status": {
+    "CONFIRMED": "Confirmed",
+    "CANCELLED_BY_STUDENT": "Cancelled by you",
+    "CANCELLED_BY_LECTURER": "Cancelled by lecturer",
+    "PENDING": "Pending",
+    "SENT": "Sent",
+    "FAILED": "Sending failed"
   },
   "pages": {
     "home": "Home",
