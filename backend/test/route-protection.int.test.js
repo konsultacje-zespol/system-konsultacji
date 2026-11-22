@@ -6,6 +6,9 @@ import { createTestAgent } from './helpers/test-agent.js';
 const protectedRoutes = [
   { method: 'get', path: '/api/v1/auth/me' },
   { method: 'post', path: '/api/v1/auth/logout' },
+  { method: 'get', path: '/api/v1/lecturer/office-hours' },
+  { method: 'post', path: '/api/v1/lecturer/office-hours' },
+  { method: 'delete', path: '/api/v1/lecturer/office-hours/c0000000-0000-4000-8000-000000000001' },
 ];
 
 describe('route protection', () => {
