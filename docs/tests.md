@@ -8,6 +8,9 @@ Backend ma dwa rodzaje testów. Oba uruchamia [Vitest](https://vitest.dev/), a z
 | Jednostkowe | `src/**/*.test.js` (obok testowanego kodu) | niepotrzebna | `npm run test` |
 | Integracyjne | `test/**/*.int.test.js` | `konsultacje_test` w Dockerze | `npm run test:int` |
 
+Frontend ma osobne testy komponentów — opis w sekcji [Testy frontendu](#testy-frontendu) na końcu pliku.
+Wszystkie testy uruchamia też CI przy każdym PR (opis w README, sekcja „CI”).
+
 ## Przed pierwszym uruchomieniem
 
 1. Uruchom Dockera: `docker compose up -d` (w głównym folderze repozytorium).
@@ -181,3 +184,23 @@ Pełny przykład: `test/auth.int.test.js`.
 
 Test jednostkowy sprawdza jedną funkcję bez bazy i bez Expressa (np. `src/office-hours/slot-generator.test.js`).
 Plik umieść obok testowanego pliku i nazwij `<plik>.test.js`. Jeśli kod potrzebuje bazy — napisz test integracyjny.
+
+## Testy frontendu
+
+Testy komponentów leżą w `frontend/src/**/*.test.jsx` i uruchamia je `npm test` w folderze `frontend/`. Działają
+w Vitest z „udawaną przeglądarką” jsdom, więc nie trzeba niczego uruchamiać — ani backendu, ani Dockera.
+Przed każdym plikiem uruchamia się `src/test/setup.js`: włącza i18n (teksty są po polsku, jak w aplikacji) i dodaje
+sprawdzenia typu `toBeInTheDocument()`.
+
+Nowy test piszesz, kopiując `frontend/src/test/example.test.jsx`. Każdy krok jest tam opisany komentarzem:
+
+1. `vi.mock` podmienia moduł z `src/api` na udawany, więc żadne zapytanie nie wychodzi do backendu;
+   `mockResolvedValue` / `mockRejectedValue` ustala, co „odpowie” API.
+2. `renderWithProviders(<Komponent />, { route: '/student/bookings' })` wyświetla komponent z TanStack Query
+   i routerem — tak jak w `main.jsx`. Każdy test dostaje nowy, pusty cache.
+3. `userEvent` klika i wpisuje tekst jak użytkownik, a `screen` szuka elementów po tym, co widać na ekranie
+   (tekst, rola, etykieta). Gdy dane przychodzą z API, użyj `await screen.findBy…` — czeka, aż element się pojawi;
+   `getBy…` sprawdza tylko raz.
+
+Plik testu umieść obok testowanego komponentu, np. `src/pages/MyBookingsPage.test.jsx`. Ostrzeżenia
+„React Router Future Flag Warning” w wyniku testów są niegroźne.
