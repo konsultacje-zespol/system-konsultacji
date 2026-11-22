@@ -9,7 +9,7 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      # Skrypty z tego folderu uruchamiają się tylko przy pierwszym starcie (pusty wolumen)
+      # scripts from this folder run only on the very first start (empty volume)
       - ./docker/postgres/init:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d konsultacje"]
