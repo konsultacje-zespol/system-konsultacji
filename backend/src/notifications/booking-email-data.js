@@ -1,3 +1,5 @@
+import { prisma } from '../db.js';
+
 // "Booking e-mail data" — the plain object every e-mail text function receives:
 // {
 //   bookingId,       // string (uuid) — used by the calendar invitation in sprint 2
@@ -27,3 +29,38 @@ export const sampleBookingEmailData = {
   topic: 'Zadanie 3 z listy 5',
   cancelReason: null,
 };
+
+// Loads everything the e-mail needs for one booking. Returns null when the booking does not exist.
+export async function loadBookingEmailData(bookingId) {
+  const booking = await prisma.booking.findUnique({
+    where: { id: bookingId },
+    include: {
+      student: true,
+      slot: { include: { lecturer: true } },
+    },
+  });
+
+  if (!booking) {
+    return null;
+  }
+
+  const lecturer = booking.slot.lecturer;
+  // "dr Jan Kowalski" — the title is optional, so we skip it when it is empty
+  const lecturerName = [lecturer.title, lecturer.firstName, lecturer.lastName]
+    .filter(Boolean)
+    .join(' ');
+
+  return {
+    bookingId: booking.id,
+    studentName: `${booking.student.firstName} ${booking.student.lastName}`,
+    studentEmail: booking.student.email,
+    lecturerName,
+    lecturerEmail: lecturer.email,
+    startsAt: booking.slot.startsAt,
+    endsAt: booking.slot.endsAt,
+    mode: booking.slot.mode,
+    location: booking.slot.location,
+    topic: booking.topic,
+    cancelReason: booking.cancelReason,
+  };
+}
