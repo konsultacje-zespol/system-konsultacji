@@ -5,7 +5,12 @@ import { logger } from './logger.js';
 
 const app = createApp();
 
-const server = app.listen(config.PORT, () => {
+// In Express 5 this callback also receives an error, e.g. when the port is already taken
+const server = app.listen(config.PORT, (error) => {
+  if (error) {
+    logger.error(`Nie udało się uruchomić API na porcie ${config.PORT}: ${error.message}`);
+    process.exit(1);
+  }
   logger.info(`API działa na http://localhost:${config.PORT} (Swagger: /api/docs)`);
 });
 
