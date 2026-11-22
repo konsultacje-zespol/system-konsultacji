@@ -2,6 +2,7 @@ import { createApp } from './app.js';
 import { config } from './config.js';
 import { prisma } from './db.js';
 import { logger } from './logger.js';
+import { startOutboxWorker } from './notifications/outbox-worker.js';
 
 const app = createApp();
 
@@ -14,11 +15,18 @@ const server = app.listen(config.PORT, (error) => {
   logger.info(`API działa na http://localhost:${config.PORT} (Swagger: /api/docs)`);
 });
 
-// Sprint 2 (S2-BE2-1): start the outbox worker here, only when config.OUTBOX_ENABLED is true
+// The worker sends e-mails in the background (OUTBOX_ENABLED=false turns it off, e.g. in tests)
+let stopOutboxWorker = null;
+if (config.OUTBOX_ENABLED) {
+  stopOutboxWorker = startOutboxWorker();
+  logger.info('Worker powiadomień uruchomiony (co 10 s)');
+}
 
 function shutdown() {
   logger.info('Zamykanie API...');
-  // Sprint 2 (S2-BE2-1): stop the outbox worker here
+  if (stopOutboxWorker) {
+    stopOutboxWorker();
+  }
   server.close(async () => {
     await prisma.$disconnect();
     process.exit(0);
