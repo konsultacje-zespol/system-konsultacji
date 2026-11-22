@@ -1,6 +1,7 @@
 # Pliki lokalne (nie trafiają do repozytorium)
 plan.md
 AGENTS.md
+.claude/
 
 # Node
 node_modules/
