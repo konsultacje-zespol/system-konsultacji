@@ -11,6 +11,7 @@
     "start": "node src/server.js",
     "lint": "eslint .",
     "test": "vitest run",
+    "test:int": "vitest run --config vitest.int.config.js",
     "openapi:check": "node scripts/check-openapi.js && redocly lint --extends=minimal openapi.generated.json",
     "mail:test": "node scripts/send-test-email.js"
   },
