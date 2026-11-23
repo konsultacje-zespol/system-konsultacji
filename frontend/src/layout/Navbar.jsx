@@ -50,9 +50,12 @@ export default function Navbar() {
     } catch {
       // ignore request failures so the local session is still cleared
     }
-    // wipe all cached queries so the next user starts with a clean state
-    queryClient.clear();
-    navigate('/login');
+    // tell the app right away that nobody is logged in — AuthProvider re-renders with user = null,
+    // so the login page does not send us back (queryClient.clear() would not notify AuthProvider)
+    queryClient.setQueryData(['me'], null);
+    // remove the previous user's data (bookings, schedule…), but keep the "me" entry set to null
+    queryClient.removeQueries({ predicate: (query) => query.queryKey[0] !== 'me' });
+    navigate('/login', { replace: true });
   }
 
   return (
